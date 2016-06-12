@@ -1,5 +1,8 @@
 package org.paukov;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.activiti.engine.RepositoryService;
 import org.activiti.engine.RuntimeService;
 import org.activiti.engine.TaskService;
@@ -23,7 +26,10 @@ public class BpmActivitiExampleApplication {
         return new CommandLineRunner() {
             @Override
             public void run(String... strings) throws Exception {
-                runtimeService.startProcessInstanceByKey("activitiReview");
+            	Map<String, Object> variables = new HashMap<String, Object>();
+                variables.put("userName", "John Doe");
+                variables.put("phoneNumber", "123456789");
+                runtimeService.startProcessInstanceByKey("activitiReview", variables);
             }
         };
 
